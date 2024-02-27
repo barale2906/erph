@@ -14,7 +14,7 @@
                         </svg>
                     </button>
                     <a href="/dashboard" class="flex ml-2 md:mr-24">
-                        <img src="{{$urlempr}}" class="object-cover h-10 mr-3 rounded-t-lg" alt="{{env('APP_NAME')}}" />
+                        <img src="{{-- {{$urlempr}} --}}" class="object-cover h-10 mr-3 rounded-t-lg" alt="{{env('APP_NAME')}}" />
                         <span class="self-center font-semibold sm:invisible dark:text-white uppercase">
 
                         </span>
@@ -25,7 +25,7 @@
                         <div>
                             <button type="button" class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full" src="{{$url}}" alt="user photo">
+                            <img class="w-8 h-8 rounded-full" src="{{-- {{$url}} --}}" alt="user photo">
                             </button>
                         </div>
                         <div class="z-50 hidden my-4 text-base list-none bg-green-400 divide-y divide-gray-100 rounded-2xl shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-user">
@@ -37,7 +37,7 @@
                                     {{ Auth::user()->email }}
                                 </p>
                                 <p class="text-sm font-medium text-gray-900 uppercase truncate dark:text-gray-300" role="none">
-                                    {{$empactual->name}}
+                                    {{-- {{$empactual->name}} --}}
                                 </p>
                             </div>
                             <ul class="py-1" role="none">
