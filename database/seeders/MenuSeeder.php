@@ -1,0 +1,41 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Configuracion\Menu;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class MenuSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $m1=Menu::create([
+            'name'              => 'CONFIGURACIÓN',
+            'identificaRuta'    => 'configuracion.*',
+            'permiso'           => 'Configuracion',
+            'icono'             => 'fa-solid fa-screwdriver-wrench'
+        ]);
+
+        Menu::create([
+                    'permiso'           => 'co_users',
+                    'ruta'              => 'configuracion.users',
+                    'identificaRuta'    => 'configuracion.users',
+                    'name'              => 'Usuarios',
+                    'icono'             => 'fa-solid fa-users text-gray-500',
+                    'menu_id'           => $m1->id
+                ]);
+
+        Menu::create([
+                    'permiso'           => 'co_rols',
+                    'ruta'              => 'configuracion.roles',
+                    'identificaRuta'    => 'configuracion.roles',
+                    'name'              => 'Roles',
+                    'icono'             => 'fa-solid fa-wand-sparkles text-gray-500',
+                    'menu_id'           => $m1->id
+                ]);
+    }
+}
