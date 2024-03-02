@@ -78,5 +78,18 @@ class RoleSeeder extends Seeder
                             'descripcion'=>'inactivar roles',
                             'modulo'=>'configuracion'
                             ])->syncRoles([$Superusuario]);
+
+
+        Permission::create([
+                                'name'=>'ph',
+                                'descripcion'=>'Ingreso al menú Propiedad Horizontal',
+                                'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario,$Operaciones]);
+
+        Permission::create([
+                            'name'=>'ph_coprop',
+                            'descripcion'=>'ver propiedades',
+                            'modulo'=>'configuracion'
+                            ])->syncRoles([$Superusuario,$Operaciones]);
     }
 }

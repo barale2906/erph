@@ -37,5 +37,21 @@ class MenuSeeder extends Seeder
                     'icono'             => 'fa-solid fa-wand-sparkles text-gray-500',
                     'menu_id'           => $m1->id
                 ]);
+
+        $m2=Menu::create([
+                    'name'              => 'PROPIEDAD',
+                    'identificaRuta'    => 'ph.*',
+                    'permiso'           => 'ph',
+                    'icono'             => 'fa-solid fa-building-flag'
+                ]);
+
+        Menu::create([
+                    'permiso'           => 'ph_coprop',
+                    'ruta'              => 'ph.coprops',
+                    'identificaRuta'    => 'ph.coprops',
+                    'name'              => 'Propiedades',
+                    'icono'             => 'fa-solid fa-house text-gray-500',
+                    'menu_id'           => $m2->id
+                ]);
     }
 }

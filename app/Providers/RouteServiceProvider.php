@@ -40,6 +40,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('configuracion')
                 ->name('configuracion.')
                 ->group(base_path('routes/configuracion.php'));
+
+            Route::middleware('web', 'auth')
+                ->prefix('ph')
+                ->name('ph.')
+                ->group(base_path('routes/ph.php'));
         });
     }
 }
