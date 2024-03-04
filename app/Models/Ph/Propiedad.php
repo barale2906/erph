@@ -16,8 +16,17 @@ class Propiedad extends Model
      * Relación uno a muchos.
      * Unidades que le pertenecen
      */
-    public function unidad() :HasMany
+    public function unidades() :HasMany
     {
         return $this->hasMany(Unidad::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * Administrador por conjunto
+     */
+    public function administradores() :HasMany
+    {
+        return $this->hasMany(Administrador::class);
     }
 }

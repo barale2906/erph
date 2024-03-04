@@ -132,5 +132,26 @@ class RoleSeeder extends Seeder
                             ])->syncRoles([$Superusuario]);
 
 
+        Permission::create([
+                            'name'=>'ph_admin',
+                            'descripcion'=>'ver administradores',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Residente,$Guardas,$Administrador,$Mantenimiento,$Copropietario,$RevisorFiscal,$Contador,$ServiciosGen,$AuxiliarGen,$AuxiliarPH]);
+
+        Permission::create([
+                            'name'=>'ph_adminCrear',
+                            'descripcion'=>'crear administradores',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero]);
+        Permission::create([
+                            'name'=>'ph_adminEditar',
+                            'descripcion'=>'editar administradores',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero]);
+        Permission::create([
+                            'name'=>'ph_adminInactivar',
+                            'descripcion'=>'inactivar administradores',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero]);
     }
 }
