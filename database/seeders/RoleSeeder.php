@@ -153,5 +153,34 @@ class RoleSeeder extends Seeder
                             'descripcion'=>'inactivar administradores',
                             'modulo'=>'propiedad'
                             ])->syncRoles([$Superusuario,$Operaciones,$Consejero]);
+
+
+        Permission::create([
+                            'name'=>'reunion',
+                            'descripcion'=>'Ingreso al menú Reuniones',
+                            'modulo'=>'reunion'
+                        ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Residente,$Guardas,$Administrador,$Mantenimiento,$Copropietario,$RevisorFiscal,$Contador,$ServiciosGen,$AuxiliarGen,$AuxiliarPH]);
+
+        Permission::create([
+                            'name'=>'reu_reunion',
+                            'descripcion'=>'ver reuniones',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Residente,$Guardas,$Administrador,$Mantenimiento,$Copropietario,$RevisorFiscal,$Contador,$ServiciosGen,$AuxiliarGen,$AuxiliarPH]);
+
+        Permission::create([
+                            'name'=>'reu_reunionCrear',
+                            'descripcion'=>'crear reunión',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Administrador]);
+        Permission::create([
+                            'name'=>'reu_reunionEditar',
+                            'descripcion'=>'editar reunión',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Administrador]);
+        Permission::create([
+                            'name'=>'reu_reunionInactivar',
+                            'descripcion'=>'inactivar reunión',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones]);
     }
 }

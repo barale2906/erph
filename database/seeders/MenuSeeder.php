@@ -71,5 +71,21 @@ class MenuSeeder extends Seeder
                     'icono'             => 'fa-solid fa-user-tie text-gray-500',
                     'menu_id'           => $m2->id
                 ]);
+
+        $m3=Menu::create([
+                    'name'              => 'REUNIÓN',
+                    'identificaRuta'    => 'reunion.*',
+                    'permiso'           => 'reunion',
+                    'icono'             => 'fa-solid fa-people-roof'
+                ]);
+
+        Menu::create([
+                    'permiso'           => 'reu_reunion',
+                    'ruta'              => 'reunion.reunion',
+                    'identificaRuta'    => 'reunion.reunion',
+                    'name'              => 'Reuniones',
+                    'icono'             => 'fa-solid fa-people-line text-gray-500',
+                    'menu_id'           => $m3->id
+                ]);
     }
 }

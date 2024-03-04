@@ -45,6 +45,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('ph')
                 ->name('ph.')
                 ->group(base_path('routes/ph.php'));
+
+            Route::middleware('web', 'auth')
+                ->prefix('reunion')
+                ->name('reunion.')
+                ->group(base_path('routes/reunion.php'));
         });
     }
 }

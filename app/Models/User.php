@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Ph\Administrador;
+use App\Models\Reuniones\Reunion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -74,5 +75,14 @@ class User extends Authenticatable
     public function administradores() :HasMany
     {
         return $this->hasMany(Administrador::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * Convocantes a reunión
+     */
+    public function convocantes() :HasMany
+    {
+        return $this->hasMany(Reunion::class);
     }
 }

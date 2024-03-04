@@ -2,6 +2,7 @@
 
 namespace App\Models\Ph;
 
+use App\Models\Reuniones\Reunion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,5 +29,14 @@ class Propiedad extends Model
     public function administradores() :HasMany
     {
         return $this->hasMany(Administrador::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * Reuniones del conjunto
+     */
+    public function reuniones() :HasMany
+    {
+        return $this->hasMany(Reunion::class);
     }
 }
