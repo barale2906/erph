@@ -87,5 +87,14 @@ class MenuSeeder extends Seeder
                     'icono'             => 'fa-solid fa-people-line text-gray-500',
                     'menu_id'           => $m3->id
                 ]);
+
+        Menu::create([
+                    'permiso'           => 'reu_votacion',
+                    'ruta'              => 'reunion.votacion',
+                    'identificaRuta'    => 'reunion.votacion',
+                    'name'              => 'Votaciones',
+                    'icono'             => 'fa-solid fa-check-to-slot text-gray-500',
+                    'menu_id'           => $m3->id
+                ]);
     }
 }

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Reunion extends Model
 {
@@ -31,6 +32,15 @@ class Reunion extends Model
     public function convoca() :BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * Votaciones para la reunión
+     */
+    public function votacion() :HasMany
+    {
+        return $this->hasMany(Votacion::class);
     }
 
 }

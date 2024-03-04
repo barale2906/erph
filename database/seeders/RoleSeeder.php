@@ -181,6 +181,35 @@ class RoleSeeder extends Seeder
                             'name'=>'reu_reunionInactivar',
                             'descripcion'=>'inactivar reunión',
                             'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Administrador,$Consejero]);
+
+
+        Permission::create([
+                            'name'=>'reu_votacion',
+                            'descripcion'=>'ver votaciones',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Residente,$Administrador,$Copropietario,$AuxiliarGen,$AuxiliarPH]);
+
+        Permission::create([
+                            'name'=>'reu_votacionCrear',
+                            'descripcion'=>'crear reunión',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Administrador]);
+        Permission::create([
+                            'name'=>'reu_votacionEditar',
+                            'descripcion'=>'editar reunión',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Consejero,$Administrador]);
+        Permission::create([
+                            'name'=>'reu_votacionInactivar',
+                            'descripcion'=>'inactivar reunión',
+                            'modulo'=>'reunion'
                             ])->syncRoles([$Superusuario,$Operaciones]);
+
+        Permission::create([
+                            'name'=>'reu_votar',
+                            'descripcion'=>'Registrar Voto',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones,$Copropietario,$Consejero,$Administrador]);
     }
 }
