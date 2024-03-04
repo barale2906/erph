@@ -53,5 +53,14 @@ class MenuSeeder extends Seeder
                     'icono'             => 'fa-solid fa-house text-gray-500',
                     'menu_id'           => $m2->id
                 ]);
+
+        Menu::create([
+                    'permiso'           => 'ph_unid',
+                    'ruta'              => 'ph.unidades',
+                    'identificaRuta'    => 'ph.unidades',
+                    'name'              => 'Unidades',
+                    'icono'             => 'fa-solid fa-house-user text-gray-500',
+                    'menu_id'           => $m2->id
+                ]);
     }
 }

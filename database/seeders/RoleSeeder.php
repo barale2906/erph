@@ -88,8 +88,49 @@ class RoleSeeder extends Seeder
 
         Permission::create([
                             'name'=>'ph_coprop',
-                            'descripcion'=>'ver propiedades',
-                            'modulo'=>'configuracion'
+                            'descripcion'=>'ver copropiedades',
+                            'modulo'=>'propiedad'
                             ])->syncRoles([$Superusuario,$Operaciones]);
+
+        Permission::create([
+                            'name'=>'ph_copropCrear',
+                            'descripcion'=>'crear copropiedades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario]);
+        Permission::create([
+                            'name'=>'ph_copropEditar',
+                            'descripcion'=>'editar copropiedades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario]);
+        Permission::create([
+                            'name'=>'ph_copropInactivar',
+                            'descripcion'=>'inactivar copropiedades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario]);
+
+
+        Permission::create([
+                            'name'=>'ph_unid',
+                            'descripcion'=>'ver unidades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario,$Operaciones]);
+
+        Permission::create([
+                            'name'=>'ph_unidCrear',
+                            'descripcion'=>'crear unidades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario]);
+        Permission::create([
+                            'name'=>'ph_unidEditar',
+                            'descripcion'=>'editar unidades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario]);
+        Permission::create([
+                            'name'=>'ph_unidInactivar',
+                            'descripcion'=>'inactivar unidades',
+                            'modulo'=>'propiedad'
+                            ])->syncRoles([$Superusuario]);
+
+
     }
 }
