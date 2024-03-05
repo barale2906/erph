@@ -2,5 +2,5 @@
     @push('title')
         Gestión de Reuniones
     @endpush
-    {{-- <livewire:configuracion.usuarios.user-list /> --}}
+    <livewire:reunion.reuniones />
 </x-registrado-layout>
