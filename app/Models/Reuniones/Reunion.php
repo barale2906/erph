@@ -43,4 +43,13 @@ class Reunion extends Model
         return $this->hasMany(Votacion::class);
     }
 
+    /**
+     * Relación uno a muchos.
+     * Quorum para esta reunión
+     */
+    public function asistentes() :HasMany
+    {
+        return $this->hasMany(Quorum::class);
+    }
+
 }

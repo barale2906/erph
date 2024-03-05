@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Ph\Administrador;
+use App\Models\Reuniones\Quorum;
 use App\Models\Reuniones\Reunion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -84,5 +85,14 @@ class User extends Authenticatable
     public function convocantes() :HasMany
     {
         return $this->hasMany(Reunion::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * Registra acceso a la reunión
+     */
+    public function registra() :HasMany
+    {
+        return $this->hasMany(Quorum::class);
     }
 }

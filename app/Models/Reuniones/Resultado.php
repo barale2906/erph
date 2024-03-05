@@ -5,9 +5,8 @@ namespace App\Models\Reuniones;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Votacion extends Model
+class Resultado extends Model
 {
     use HasFactory;
 
@@ -15,22 +14,11 @@ class Votacion extends Model
 
     /**
      * Relación uno a muchos inversa.
-     * Votaci´n para la reunión
+     * Respuestas por pregunta
      */
     public function reuniones() :BelongsTo
     {
-        return $this->belongsTo(Reunion::class);
+        return $this->belongsTo(Respuesta::class);
     }
-
-    /**
-     * Relación uno a muchos.
-     * Respuestas a las preguntas
-     */
-    public function respuestas() :HasMany
-    {
-        return $this->hasMany(Respuesta::class);
-    }
-
-
 
 }
