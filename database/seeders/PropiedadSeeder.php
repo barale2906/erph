@@ -20,5 +20,13 @@ class PropiedadSeeder extends Seeder
             'email'     => 'conjuntocerradoalamedaph@gmail.com',
             'telefono'  =>'321 273 1985'
         ]);
+
+        Propiedad::create([
+            'nit'       => '900988543',
+            'nombre'    => 'conjunto residencial parque flamencos ii',
+            'direccion' => 'calle 77 sur # 81 - 80',
+            'email'     => 'parquesflamencos2021@gmail.com',
+            'telefono'  => '321 273 3333'
+        ]);
     }
 }

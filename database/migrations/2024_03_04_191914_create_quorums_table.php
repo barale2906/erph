@@ -23,8 +23,9 @@ return new class extends Migration
             $table->unsignedBigInteger('unidad_id');
             $table->foreign('unidad_id')->references('id')->on('unidads');
 
-            $table->double('coeficiente')->comment('Coeficiente de la copropiedad');
-            $table->double('codigo')->nullable()->comment('Código de barras');
+            $table->integer('asistio')->default(0)->comment('0 No Asisitio 1, Asistio, Registra si asistio o no');
+            $table->double('coeficiente')->nullable()->comment('Coeficiente de la copropiedad');
+            $table->string('codigo')->nullable()->comment('Código de barras');
 
             $table->timestamps();
         });

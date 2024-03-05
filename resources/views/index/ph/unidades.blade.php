@@ -2,5 +2,7 @@
     @push('title')
         Gestión de Unidades
     @endpush
-    {{-- <livewire:configuracion.usuarios.user-list /> --}}
+
+    <livewire:ph.unidad.unidades />
+
 </x-registrado-layout>
