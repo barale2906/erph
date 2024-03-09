@@ -52,13 +52,13 @@
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <tbody>
                     @foreach ($codigos as $item)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700">
                             @for ($i = 1; $i <= $veces; $i++)
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <th scope="row" class="font-medium p-2 text-gray-900 dark:text-white">
                                     <a href="#">
                                         <img class="rounded-s" src={{$item['ruta']}} alt="" />
                                     </a>
-                                    <div class="p-5">
+                                    <div class="p-1">
                                         <p class="capitalize text-sm">
                                             {{$texto}} - {{$item['nombre']}}
                                         </p>

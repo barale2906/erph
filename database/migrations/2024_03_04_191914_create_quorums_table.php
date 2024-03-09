@@ -25,6 +25,7 @@ return new class extends Migration
 
             $table->integer('asistio')->default(0)->comment('0 No Asisitio 1, Asistio, Registra si asistio o no');
             $table->double('coeficiente')->nullable()->comment('Coeficiente de la copropiedad');
+            $table->longText('observaciones')->nullable()->comment('Observaciones de registro');
             $table->string('codigo')->nullable()->comment('Código de barras');
 
             $table->timestamps();
