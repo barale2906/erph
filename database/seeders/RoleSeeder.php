@@ -211,5 +211,11 @@ class RoleSeeder extends Seeder
                             'descripcion'=>'Registrar Voto',
                             'modulo'=>'reunion'
                             ])->syncRoles([$Superusuario,$Operaciones,$Copropietario,$Consejero,$Administrador]);
+
+        Permission::create([
+                            'name'=>'reu_barras',
+                            'descripcion'=>'Generar e imprimir códigos de barras',
+                            'modulo'=>'reunion'
+                            ])->syncRoles([$Superusuario,$Operaciones]);
     }
 }

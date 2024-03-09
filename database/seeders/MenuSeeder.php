@@ -96,5 +96,14 @@ class MenuSeeder extends Seeder
                     'icono'             => 'fa-solid fa-check-to-slot text-gray-500',
                     'menu_id'           => $m3->id
                 ]);
+
+        Menu::create([
+                    'permiso'           => 'reu_barras',
+                    'ruta'              => 'reunion.barras',
+                    'identificaRuta'    => 'reunion.barras',
+                    'name'              => 'Códigos de Barras',
+                    'icono'             => 'fa-solid fa-barcode text-gray-500',
+                    'menu_id'           => $m3->id
+                ]);
     }
 }
