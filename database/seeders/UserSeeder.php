@@ -16,9 +16,17 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Ing Alexander Barajas V',
             'email' => 'alexanderbarajas@gmail.com',
-            'password'=>bcrypt('10203040'),
+            'password'=>bcrypt('79844910'),
             'rol_id'=>1,
             'ph_id'=>1,
         ])->assignRole('Superusuario');
+
+        User::factory()->create([
+            'name' => 'Juan Carlos Martinez',
+            'email' => 'administrador@flamencos2.com',
+            'password'=>bcrypt('administradorflamencos'),
+            'rol_id'=>4,
+            'ph_id'=>2,
+        ])->assignRole('Administrador');
     }
 }

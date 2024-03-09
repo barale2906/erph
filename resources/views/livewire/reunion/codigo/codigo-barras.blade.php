@@ -1,8 +1,8 @@
 <div>
     @if ($is_modify)
-    <h1 class=" text-center text-2xl uppercase font-extrabold">
-        Parámetros para crear los códigos de barras:
-    </h1>
+        <h1 class=" text-center text-2xl uppercase font-extrabold">
+            Parámetros para crear los códigos de barras:
+        </h1>
         <form class="max-w-3xl mx-auto">
             <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 ring mt-5 mb-5 bg-green-100 rounded-lg p-5">
                 <div class="relative z-0 w-full mb-5 group">
@@ -74,14 +74,4 @@
 
 
     @endif
-    {{--
-    Alexander
-    @foreach ($codigos as $item)
-        Array
-        {!!$item!!}<br>
-        <img class="rounded-t-lg" src={{$item}} />
-    @endforeach
-    Daniela
-    {!!$resultado!!}
-    abajo --}}
 </div>

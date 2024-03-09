@@ -11,6 +11,8 @@ class Quorum extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     /**
      * Relación uno a muchos inversa.
      * Asistentes a la respectiva reunión
@@ -22,7 +24,7 @@ class Quorum extends Model
 
     /**
      * Relación uno a muchos inversa.
-     * Usuario que registra
+     * Usuario que registra el ingreso
      */
     public function registra() :BelongsTo
     {

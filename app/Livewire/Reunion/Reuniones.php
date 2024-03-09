@@ -20,7 +20,9 @@ class Reuniones extends Component
     public $is_creating = false;
     public $buscar;
     public $busqueda;
-    public $propiedadMenu;
+
+    public $tipo;
+    public $elegido;
 
     protected $listeners = ['refresh' => '$refresh'];
 
@@ -44,10 +46,8 @@ class Reuniones extends Component
     //Modificar registro
     public function show($id, $est){
 
-
         $this->is_modify=!$this->is_modify;
         $this->is_creating=!$this->is_creating;
-
     }
 
     //Activar evento
