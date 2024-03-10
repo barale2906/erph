@@ -18,9 +18,13 @@ class ReunionesGestion extends Component
     public $statusNombre;
     public $estados;
     public $estNombre;
+    public $asistio=false;
+    public $reunion;
 
     public $is_form=true;
     public $is_ot=false;
+    public $is_quorum=false;
+    public $is_registromasivo=false;
 
 
     public $fecha;
@@ -34,13 +38,13 @@ class ReunionesGestion extends Component
         if($elegido){
             $this->actual=Reunion::find($elegido);
             $this->detalles();
+            $this->asistencia();
         }
         if($tipo){
             $this->tipo=$tipo;
         }else{
             $this->tipo=0;
         }
-
     }
 
     public function detalles(){
@@ -87,6 +91,28 @@ class ReunionesGestion extends Component
                 $this->estados=2;
                 $this->estNombre='Finalizar';
                 break;
+
+            case 4:
+                $this->is_form=!$this->is_form;
+                $this->is_quorum=!$this->is_quorum;
+                break;
+        }
+    }
+
+    public function registro(){
+        $this->is_registromasivo=!$this->is_registromasivo;
+        $this->reunion=$this->actual->id;
+    }
+
+    public function asistencia(){
+        $llego=Quorum::where('reunion_id', $this->actual->id)
+                        ->where('registra_id', Auth::user()->id)
+                        ->first();
+
+        if($llego){
+            if($llego->asistio===1){
+                $this->asistio=true;
+            }
         }
     }
 
@@ -125,7 +151,7 @@ class ReunionesGestion extends Component
             'propiedad_id'  =>Auth::user()->ph_id,
             'fecha'     => $this->fecha,
             'hora'      => $this->hora,
-            'lugar'     => $this->lugar,
+            'lugar'     => strtolower($this->lugar),
             'tipo'      => $this->tip,
         ]);
 
@@ -138,6 +164,7 @@ class ReunionesGestion extends Component
                 Quorum::create([
                     'reunion_id'    =>$reu->id,
                     'registra_id'   =>Auth::user()->id,
+                    'name'          =>$value->name,
                     'unidad_id'     =>$value->id,
                     'coeficiente'   =>$value->coeficiente,
                     'observaciones' =>now().Auth::user()->name." creo la convocatoria",

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('unidad_id');
             $table->foreign('unidad_id')->references('id')->on('unidads');
 
+            $table->string('name')->comment('Identificación de la torre, apto, interior etc');
             $table->integer('asistio')->default(0)->comment('0 No Asisitio 1, Asistio, Registra si asistio o no');
             $table->double('coeficiente')->nullable()->comment('Coeficiente de la copropiedad');
             $table->longText('observaciones')->nullable()->comment('Observaciones de registro');

@@ -24,17 +24,19 @@ class UnidadSeeder extends Seeder
                     $row++;
 
                     try {
-                        if($data[2]){
-                            $depe=Unidad::where('name', $data[2])->select('id')->first();
+                        if($data[3]){
+                            $depe=Unidad::where('name', $data[3])->select('id')->first();
                             $dep=$depe->id;
+                            $name=strtolower($data[3])." - ".strtolower($data[1]);
                         }else{
                             $dep=null;
+                            $name=strtolower($data[1]);
                         }
 
                         Unidad::create([
-                            'propiedad_id'  =>1,
-                            'name'       => strtolower($data[0]),
-                            'coeficiente'   =>$data[1],
+                            'propiedad_id'  =>intval($data[0]),
+                            'name'          =>$name,
+                            'coeficiente'   =>$data[2],
                             'unidad_id'     =>$dep,
                         ]);
 
