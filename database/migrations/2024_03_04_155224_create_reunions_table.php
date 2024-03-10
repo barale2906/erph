@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('tipo')->comment('Asamblea, Reunión consejo, Contador, Otros');
             $table->time('hora')->comment('Hora de la reunión');
             $table->string('ruta')->nullable()->comment('Ruta del aviso');
-            $table->integer('status')->default(0)->comment('0 Convocada, 1 desarrollada, 2 Anulada');
+            $table->integer('status')->default(0)->comment('0 Convocada, 1 activa, 2 finalizada, 3 Anulada');
 
             $table->timestamps();
         });

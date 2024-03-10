@@ -18,6 +18,7 @@ class Reuniones extends Component
 
     public $is_modify = true;
     public $is_creating = false;
+    public $is_status=false;
     public $buscar;
     public $busqueda;
 
@@ -47,7 +48,9 @@ class Reuniones extends Component
     public function show($id, $est){
 
         $this->is_modify=!$this->is_modify;
-        $this->is_creating=!$this->is_creating;
+        $this->is_creating = !$this->is_creating;
+        $this->tipo=$est;
+        $this->elegido=$id;
     }
 
     //Activar evento

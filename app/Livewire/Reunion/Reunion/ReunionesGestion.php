@@ -6,12 +6,22 @@ use App\Models\Ph\Unidad;
 use App\Models\Reuniones\Quorum;
 use App\Models\Reuniones\Reunion;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class ReunionesGestion extends Component
 {
     public $actual;
     public $tipo;
+    public $name;
+    public $status;
+    public $statusNombre;
+    public $estados;
+    public $estNombre;
+
+    public $is_form=true;
+    public $is_ot=false;
+
 
     public $fecha;
     public $hora;
@@ -23,11 +33,60 @@ class ReunionesGestion extends Component
     public function mount($elegido=null, $tipo=null ){
         if($elegido){
             $this->actual=Reunion::find($elegido);
+            $this->detalles();
         }
         if($tipo){
             $this->tipo=$tipo;
         }else{
             $this->tipo=0;
+        }
+
+    }
+
+    public function detalles(){
+
+        $this->fecha=$this->actual->fecha;
+        $this->hora=$this->actual->hora;
+        $this->lugar=$this->actual->lugar;
+        $this->tip=$this->actual->tipo;
+
+        $this->name="La reunión con fecha: ".$this->actual->fecha." de tipo: ".$this->actual->tipo;
+        switch ($this->actual->status) {
+            case 0:
+                $this->status='Convocada';
+                break;
+            case 1:
+                $this->status='Activa';
+                break;
+            case 2:
+                $this->status='Finalizada';
+                break;
+            case 3:
+                $this->status='Anulada';
+                break;
+        }
+
+        switch ($this->tipo) {
+            case 1:
+                $this->is_form=!$this->is_form;
+                $this->is_ot=!$this->is_ot;
+                $this->estados=1;
+                $this->estNombre='Activar';
+                break;
+
+            case 2:
+                $this->is_form=!$this->is_form;
+                $this->is_ot=!$this->is_ot;
+                $this->estados=3;
+                $this->estNombre='Anular';
+                break;
+
+            case 3:
+                $this->is_form=!$this->is_form;
+                $this->is_ot=!$this->is_ot;
+                $this->estados=2;
+                $this->estNombre='Finalizar';
+                break;
         }
     }
 
@@ -90,6 +149,23 @@ class ReunionesGestion extends Component
 
         // Notificación
         $this->dispatch('alerta', name:'Se ha creado correctamente la reunión con fecha: '.$reu->fecha);
+        $this->resetFields();
+
+        //refresh
+        $this->dispatch('refresh');
+        $this->dispatch('cancelando');
+    }
+
+    //Activar evento
+    #[On('cambiando')]
+    //resetear variables
+    public function cambiar(){
+        $this->actual->update([
+            'status'=>$this->estados,
+        ]);
+
+        // Notificación
+        $this->dispatch('alerta', name:'Se ha actualizado correctamente la reunión con fecha: '.$this->actual->fecha);
         $this->resetFields();
 
         //refresh
