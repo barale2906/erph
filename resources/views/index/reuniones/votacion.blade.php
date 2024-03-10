@@ -2,5 +2,5 @@
     @push('title')
         Gestión de Votaciones
     @endpush
-    {{-- <livewire:configuracion.usuarios.user-list /> --}}
+    <livewire:reunion.votacion.votaciones />
 </x-registrado-layout>
