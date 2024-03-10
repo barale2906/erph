@@ -116,7 +116,6 @@
                             </th>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
             <div class="mt-2 p-1 w-auto rounded-lg grid grid-cols-2 gap-4 bg-blue-100">

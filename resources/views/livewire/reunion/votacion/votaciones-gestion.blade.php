@@ -8,27 +8,44 @@
                 Fecha: {{$actual->fecha}} a las {{$actual->hora}} en: {{$actual->lugar}} en este momento su estado es: {{$estareu}}
             </p>
             <div class="inline-flex rounded-md shadow-sm" role="group">
-                <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-blue-100 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                    @can('reu_reunionEditar')
-                        <a href="" wire:click.prevent="registro" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            <i class="fa-solid fa-check-double"></i> Registro
-                        </a>
-                    @endcan
-                </button>
+                @can('reu_votacionCrear')
+                    @if ($is_lista)
+                        <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-blue-100 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+
+                                <a href="" wire:click.prevent="show()" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <i class="fa-solid fa-plus"></i> Pregunta
+                                </a>
+
+                        </button>
+                    @else
+                        <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-red-100 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-red-500 dark:focus:text-white">
+
+                                <a href="" wire:click.prevent="vuelve" class="inline-flex items-center font-medium text-red-600 dark:text-red-500 hover:underline">
+                                    <i class="fa-solid fa-angles-left"></i> Volver
+                                </a>
+
+                        </button>
+                    @endif
+
+                @endcan
+                @can('reu_reunionEditar')
                 <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                    @can('reu_reunionEditar')
+
                         <a href="" wire:click.prevent="votacion" class="inline-flex items-center font-medium text-green-600 dark:text-green-500 hover:underline">
                             <i class="fa-solid fa-barcode"></i> Votos
                         </a>
-                    @endcan
+
                 </button>
+                @endcan
+                @can('reu_votar')
                 <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-cyan-100 border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                    @can('reu_votar')
+
                         <a href="#" wire:click.prevent="votar" class="inline-flex items-center font-medium text-cyan-600 dark:text-cyan-500 hover:underline">
                             <i class="fa-solid fa-check-to-slot"></i> Votar
                         </a>
-                    @endcan
+
                 </button>
+                @endcan
             </div>
         </div>
         <div class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
@@ -39,6 +56,7 @@
             A continuación se presentan las preguntas programadas con sus respectivas respuestas
         </h2>
         <div class="grid sm:grid-cols-1 md:grid-cols-5 gap-4 ring mt-5 mb-5 rounded-lg p-5">
+            <div></div>
             <div class="overflow-x-auto shadow-md sm:rounded-lg col-span-3">
                 <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 m-4">
                     <thead class="text-xs text-gray-700 uppercase ">
@@ -63,7 +81,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($actual->votaciones as $it)
+                        @foreach ($cuestiones as $it)
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
                                     <div class="inline-flex rounded-md shadow-sm" role="group">
@@ -74,7 +92,7 @@
                                         </button>
                                     </div>
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 uppercase">
+                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
                                     {{$it->pregunta}}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
@@ -88,11 +106,15 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+            <div class=" col-span-2">
 
+            </div>
+        </div>
     @endif
 
     @if ($is_editar)
-
+        <livewire:reunion.votacion.pregunta :reunion="$actual->id" :pregunta="$pregunta_id"/>
     @endif
+
+
 </div>

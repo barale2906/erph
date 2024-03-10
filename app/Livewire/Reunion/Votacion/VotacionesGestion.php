@@ -3,12 +3,17 @@
 namespace App\Livewire\Reunion\Votacion;
 
 use App\Models\Reuniones\Reunion;
+use App\Models\Reuniones\Votacion;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class VotacionesGestion extends Component
 {
     public $actual;
     public $estareu;
+    public $elegido;
+    public $pregunta_id;
+    public $cuestiones;
 
     public $ordena='fecha';
     public $ordenado='DESC';
@@ -21,6 +26,7 @@ class VotacionesGestion extends Component
     public function mount($elegido){
         $this->actual=Reunion::find($elegido);
         $this->detalles();
+        $this->preguntas();
     }
 
     public function detalles(){
@@ -41,6 +47,13 @@ class VotacionesGestion extends Component
         }
     }
 
+    //Activar evento
+    #[On('preguntando')]
+    public function preguntas(){
+        $this->cuestiones=Votacion::where('reunion_id', $this->actual->id)
+                                    ->get();
+    }
+
     // Ordenar Registros
     public function organizar($campo){
         if($this->ordenado === 'ASC')
@@ -50,6 +63,25 @@ class VotacionesGestion extends Component
             $this->ordenado = 'ASC';
         }
         return $this->ordena = $campo;
+    }
+
+
+
+    public function show($id=null){
+        if($id){
+            $this->pregunta_id=$id;
+        }
+        $this->mostrar();
+    }
+
+    public function vuelve(){
+        $this->reset('pregunta_id');
+        $this->mostrar();
+    }
+
+    public function mostrar(){
+        $this->is_editar=!$this->is_editar;
+        $this->is_lista=!$this->is_lista;
     }
 
     public function render()
