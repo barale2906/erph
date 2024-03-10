@@ -60,6 +60,9 @@ class RegistroMasivo extends Component
             'observaciones' =>now()." ".Auth::user()->name." registro la asistencia y cargo el código: ".$this->codigo." ----- ".$this->elegido->observaciones,
         ]);
 
+        $this->dispatch('porcentuando');
+        $this->dispatch('contando');
+
         $this->cancel();
     }
 
