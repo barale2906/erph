@@ -15,6 +15,8 @@ class VotacionesGestion extends Component
     public $pregunta_id;
     public $cuestiones;
 
+    public $est;
+
     public $ordena='fecha';
     public $ordenado='DESC';
 
@@ -67,7 +69,8 @@ class VotacionesGestion extends Component
 
 
 
-    public function show($id=null){
+    public function show($id=null,$est){
+        $this->est=$est;
         if($id){
             $this->pregunta_id=$id;
         }

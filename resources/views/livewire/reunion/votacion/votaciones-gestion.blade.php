@@ -5,14 +5,14 @@
                 {{$actual->tipo}} del {{$actual->propiedad->nombre}}
             </h1>
             <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200 capitalize">
-                Fecha: {{$actual->fecha}} a las {{$actual->hora}} en: {{$actual->lugar}} en este momento su estado es: {{$estareu}}
+                Fecha: {{$actual->fecha}} a las {{$actual->hora}} en: {{$actual->lugar}} en este momento su estado es: <span class=" uppercase font-extrabold">{{$estareu}}</span>
             </p>
             <div class="inline-flex rounded-md shadow-sm" role="group">
                 @can('reu_votacionCrear')
                     @if ($is_lista)
                         <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-blue-100 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
 
-                                <a href="" wire:click.prevent="show()" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                <a href="" wire:click.prevent="show(0,0)" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     <i class="fa-solid fa-plus"></i> Pregunta
                                 </a>
 
@@ -27,24 +27,6 @@
                         </button>
                     @endif
 
-                @endcan
-                @can('reu_reunionEditar')
-                <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-
-                        <a href="" wire:click.prevent="votacion" class="inline-flex items-center font-medium text-green-600 dark:text-green-500 hover:underline">
-                            <i class="fa-solid fa-barcode"></i> Votos
-                        </a>
-
-                </button>
-                @endcan
-                @can('reu_votar')
-                <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-cyan-100 border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-
-                        <a href="#" wire:click.prevent="votar" class="inline-flex items-center font-medium text-cyan-600 dark:text-cyan-500 hover:underline">
-                            <i class="fa-solid fa-check-to-slot"></i> Votar
-                        </a>
-
-                </button>
                 @endcan
             </div>
         </div>
@@ -86,18 +68,54 @@
                                 <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
                                     <div class="inline-flex rounded-md shadow-sm" role="group">
                                         <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-blue-100 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                            <a href="" wire:click.prevent="show({{$it->id}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                            <a href="" wire:click.prevent="show({{$it->id}},{{0}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                                 <i class="fa-solid fa-door-open"></i>
                                             </a>
                                         </button>
+                                        @switch($it->status)
+                                            @case(1)
+                                                <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-green-500 dark:focus:text-white">
+
+                                                        <a href="" wire:click.prevent="show({{$it->id}},{{2}})" class="inline-flex items-center font-medium text-green-600 dark:text-green-500 hover:underline">
+                                                            <i class="fa-solid fa-jet-fighter-up"></i>
+                                                        </a>
+
+                                                </button>
+
+                                                <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-red-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-red-500 dark:focus:text-white">
+
+                                                    <a href="" wire:click.prevent="show({{$it->id}},{{4}})" class="inline-flex items-center font-medium text-red-600 dark:text-red-500 hover:underline">
+                                                        <i class="fa-solid fa-xmark"></i>
+                                                    </a>
+
+                                            </button>
+                                                @break
+                                            @case(2)
+                                                <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-green-500 dark:focus:text-white">
+
+                                                        <a href="" wire:click.prevent="show({{$it->id}},{{3}})" class="inline-flex items-center font-medium text-green-600 dark:text-green-500 hover:underline">
+                                                            <i class="fa-solid fa-folder-closed"></i>
+                                                        </a>
+
+                                                </button>
+                                                @break
+
+                                        @endswitch
+
                                     </div>
+
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
                                     {{$it->pregunta}}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
                                     @foreach ($it->respuestas as $item)
-                                        loki
+                                        <span class="bg-blue-100 text-blue-800 text-lg capitalize font-semibold inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                                            <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                                            </svg>
+                                            {{$item->respuesta}}
+                                        </span>
                                     @endforeach
                                 </th>
                             </tr>
@@ -113,7 +131,7 @@
     @endif
 
     @if ($is_editar)
-        <livewire:reunion.votacion.pregunta :reunion="$actual->id" :pregunta="$pregunta_id"/>
+        <livewire:reunion.votacion.pregunta :reunion="$actual->id" :pregunta="$pregunta_id" :est="$est"/>
     @endif
 
 
