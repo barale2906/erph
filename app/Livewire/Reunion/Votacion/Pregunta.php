@@ -20,6 +20,7 @@ class Pregunta extends Component
     public $status;
     public $est;
 
+
     public $is_masiva=false;
     public $is_estado=false;
 
@@ -92,6 +93,23 @@ class Pregunta extends Component
         //refresh
         $this->dispatch('refresh');
         $this->is_estado=!$this->is_estado;
+    }
+
+    public function responder($resp, $tipo){
+        if($this->preguntaele->status===2){
+            $this->respuesta=$resp;
+            switch ($tipo) {
+                case 0:
+                    # Carga respuesta individual
+                    break;
+
+                case 1:
+                    $this->is_masiva=!$this->is_masiva;
+                    break;
+            }
+        }else{
+            $this->dispatch('alerta', name:'La pregunta no esta disponible para ser respondida.');
+        }
     }
 
     /**

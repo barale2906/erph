@@ -31,6 +31,15 @@ class Votacion extends Model
         return $this->hasMany(Respuesta::class);
     }
 
+    /**
+     * Relación uno a muchos.
+     * Resultados de las preguntas
+     */
+    public function resultados() :HasMany
+    {
+        return $this->hasMany(Resultado::class);
+    }
+
 
 
 }

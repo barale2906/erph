@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Quorum extends Model
 {
@@ -39,6 +40,15 @@ class Quorum extends Model
     public function unidad() :BelongsTo
     {
         return $this->belongsTo(Unidad::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * REsultado de la votación
+     */
+    public function resultados() :HasMany
+    {
+        return $this->hasMany(Resultado::class);
     }
 
     //Buscar

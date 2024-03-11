@@ -2,6 +2,7 @@
 
 namespace App\Models\Ph;
 
+use App\Models\Reuniones\Resultado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,6 +21,15 @@ class Unidad extends Model
     public function propiedad():BelongsTo
     {
         return $this->BelongsTo(Propiedad::class);
+    }
+
+    /**
+     * Relación uno a muchos.
+     * REsultado de la votación
+     */
+    public function resultados() :HasMany
+    {
+        return $this->hasMany(Resultado::class);
     }
 
     /**
