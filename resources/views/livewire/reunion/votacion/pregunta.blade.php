@@ -11,6 +11,8 @@
             <p class=" text-justify text-sm m-5">
                 {{$preguntaele->observaciones}}
             </p>
+
+
             <p class=" text-center font-bold m-5">
                 Posibles respuestas:
             </p>
