@@ -47,37 +47,56 @@ class RespuestaMasiva extends Component
     }
 
     public function cargar(){
+
         $quo=Quorum::where('codigo', $this->codigo)
                     ->where('reunion_id', $this->pregunta->reunion_id)
                     ->get();
 
+        if($quo->count()){
+            foreach ($quo as $value) {
+
+                $ya=Resultado::where('codigo', $this->codigo)
+                            ->where('quorum_id', $value->id)
+                            ->where('votacion_id', $this->pregunta->id)
+                            ->first();
+
+                if($ya){
+                    $this->dispatch('alerta', name:'Ya se registro ese código para la pregunta: '.$this->pregunta->pregunta);
+                    $this->reset('codigo');
+                }else{
+
+                    if($this->codigo!==""){
+                        Resultado::create([
+                            'votacion_id'       =>$this->pregunta->id,
+                            'respuesta_id'      =>$this->respuesta->id,
+                            'unidad_id'         =>$value->unidad_id,
+                            'quorum_id'         =>$value->id,
+                            'coeficiente'       =>$value->coeficiente,
+                            'codigo'            =>$this->codigo
+                        ]);
+                    }
 
 
-        foreach ($quo as $value) {
-
-            $ya=Resultado::where('codigo', $this->codigo)
-                        ->where('quorum_id', $value->id)
-                        ->where('votacion_id', $this->pregunta->id)
-                        ->first();
-
-            if($ya){
-                $this->dispatch('alerta', name:'Ya se registro ese código para la pregunta: '.$this->pregunta->pregunta);
-            }else{
-                Resultado::create([
-                    'votacion_id'       =>$this->pregunta->id,
-                    'respuesta_id'      =>$this->respuesta->id,
-                    'unidad_id'         =>$value->unidad_id,
-                    'quorum_id'         =>$value->id,
-                    'coeficiente'       =>$value->coeficiente,
-                    'codigo'            =>$this->codigo
-                ]);
-
-                $this->reset('codigo');
+                    $this->reset('codigo');
+                }
             }
+        }else{
+            $this->reset('codigo');
         }
 
 
 
+
+    }
+
+    private function conteo(){
+        return Resultado::where('respuesta_id', $this->respuesta->id)
+                        ->count('coeficiente');
+    }
+
+    private function porcentaje(){
+        return Resultado::where('respuesta_id', $this->respuesta->id)
+                        ->sum('coeficiente');
     }
 
     private function resultados(){
@@ -90,6 +109,8 @@ class RespuestaMasiva extends Component
     {
         return view('livewire.reunion.votacion.respuesta-masiva',[
             'resultados'=>$this->resultados(),
+            'conteo'=>$this->conteo(),
+            'porcentaje'=>$this->porcentaje(),
         ]);
     }
 }

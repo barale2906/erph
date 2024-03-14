@@ -51,6 +51,12 @@ class RegistroMasivo extends Component
         return $this->ordena = $campo;
     }
 
+    //Numero de registros
+    public function paginas($valor){
+        $this->resetPage();
+        $this->pages=$valor;
+    }
+
 
     public function cargar(){
         $this->elegido->update([

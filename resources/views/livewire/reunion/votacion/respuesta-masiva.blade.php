@@ -18,6 +18,11 @@
         <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 m-4">
             <thead class="text-xs text-gray-700 uppercase ">
                 <tr>
+                    <th colspan="3" >
+                        Cantidad de unidades que votaron por esta respuesta: <span class=" font-extrabold text-lg">{{$conteo}}</span>, equivalente a: <span class=" font-extrabold text-lg">{{$porcentaje}} %</span>
+                    </th>
+                </tr>
+                <tr>
                     <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('unidad_id')">
                         Unidad
                         @if ($ordena != 'unidad_id')
