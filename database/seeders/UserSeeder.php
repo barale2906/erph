@@ -22,11 +22,27 @@ class UserSeeder extends Seeder
         ])->assignRole('Superusuario');
 
         User::factory()->create([
+            'name' => 'Ing. Diego Alejandro Barajas',
+            'email' => 'diego@gislasas.com',
+            'password'=>bcrypt('1233491472'),
+            'rol_id'=>1,
+            'ph_id'=>1,
+        ])->assignRole('Superusuario');
+
+        User::factory()->create([
+            'name' => 'Daniela Barajas',
+            'email' => 'daniela@gislasas.com',
+            'password'=>bcrypt('1030535862'),
+            'rol_id'=>1,
+            'ph_id'=>1,
+        ])->assignRole('Superusuario');
+
+        User::factory()->create([
             'name' => 'Juan Carlos Martinez',
             'email' => 'administrador@flamencos2.com',
             'password'=>bcrypt('administradorflamencos'),
             'rol_id'=>4,
-            'ph_id'=>2,
+            'ph_id'=>1,
         ])->assignRole('Administrador');
     }
 }

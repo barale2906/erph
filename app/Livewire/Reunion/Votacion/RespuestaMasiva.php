@@ -62,7 +62,6 @@ class RespuestaMasiva extends Component
 
                 if($ya){
                     $this->dispatch('alerta', name:'Ya se registro ese código para la pregunta: '.$this->pregunta->pregunta);
-                    $this->reset('codigo');
                 }else{
 
                     if($this->codigo!==""){
@@ -75,18 +74,12 @@ class RespuestaMasiva extends Component
                             'codigo'            =>$this->codigo
                         ]);
                     }
-
-
-                    $this->reset('codigo');
                 }
             }
-        }else{
-            $this->reset('codigo');
         }
 
-
-
-
+        $this->reset('codigo');
+        $this->dispatch('totalizando');
     }
 
     private function conteo(){

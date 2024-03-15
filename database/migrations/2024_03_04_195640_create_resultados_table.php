@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('quorum_id')->references('id')->on('quorums');
 
             $table->double('coeficiente')->comment('Coeficiente de la copropiedad');
-            $table->double('codigo')->nullable()->comment('Código de barras');
+            $table->string('codigo')->nullable()->comment('Código de barras');
 
             $table->timestamps();
         });

@@ -5,48 +5,46 @@
         @if ($is_estado)
             @include('include.status')
         @else
-            <h1 class=" text-justify text-lg font-semibold m-5">
-                {{$preguntaele->pregunta}}
-            </h1>
-            <p class=" text-justify text-sm m-5">
-                {{$preguntaele->observaciones}}
-            </p>
+            <div class="grid sm:grid-cols-1 md:grid-cols-4 gap-1 m-1">
+                <div></div>
+                <livewire:reunion.votacion.pregunta-resultado :pregunta="$preguntaele->id"/>
 
+                <div>
+                    <p class=" text-center font-bold m-5">
+                        Posibles respuestas:
+                    </p>
 
-            <p class=" text-center font-bold m-5">
-                Posibles respuestas:
-            </p>
+                    <h1 class=" text-center m-5">
 
-            <h1 class=" text-center m-5">
+                        @foreach ($preguntaele->respuestas as $item)
+                            <span class="text-blue-800 bg-yellow-100 text-lg capitalize font-semibold inline-flex items-center p-2 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                                <a href="" wire:click.prevent="responder({{$item->id}},{{0}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <span class="bg-blue-100 text-blue-800 text-lg capitalize font-semibold inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                                        <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                                        </svg>
+                                        {{$item->respuesta}}
+                                    </span>
+                                </a>
 
-                @foreach ($preguntaele->respuestas as $item)
-                    <span class="text-blue-800 bg-yellow-100 text-lg capitalize font-semibold inline-flex items-center p-2 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                        <a href="" wire:click.prevent="responder({{$item->id}},{{0}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            <span class="bg-blue-100 text-blue-800 text-lg capitalize font-semibold inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                                <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-                                </svg>
-                                {{$item->respuesta}}
+                                @can('reu_votacionEditar')
+                                    <a href="" wire:click.prevent="responder({{$item->id}},{{1}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                        <span class="bg-blue-100 text-blue-800 text-lg capitalize font-semibold inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                                            <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                                            </svg>
+                                            <i class="fa-solid fa-barcode"></i>
+                                        </span>
+                                    </a>
+                                @endcan
                             </span>
-                        </a>
-
-                        @can('reu_votacionEditar')
-                            <a href="" wire:click.prevent="responder({{$item->id}},{{1}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                <span class="bg-blue-100 text-blue-800 text-lg capitalize font-semibold inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                                    <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-                                    </svg>
-                                    <i class="fa-solid fa-barcode"></i>
-                                </span>
-                            </a>
-                        @endcan
-                    </span>
-                @endforeach
-            </h1>
+                        @endforeach
+                    </h1>
+                </div>
+            </div>
 
             @if ($is_masiva)
                 <livewire:reunion.votacion.respuesta-masiva :respuesta="$respuesta"/>
-
             @else
                 @if ($preguntaele->status<3)
                     @can('reu_votacionCrear')
@@ -77,9 +75,6 @@
                 @endif
             @endif
         @endif
-
-
-
 
     @else
         <form class="max-w-3xl mx-auto">
