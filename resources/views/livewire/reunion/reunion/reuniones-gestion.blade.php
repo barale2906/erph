@@ -98,8 +98,14 @@
                         </button>
                     </div>
                     <livewire:reunion.reunion.quorum-registrado :reunion="$actual->id" />
-
-
+                    <h1 class=" text-center font-bold sm:text-sm md:text-2xl">
+                        A continuación se presentan las preguntas de esta reunión y sus respuestas.
+                    </h1>
+                    <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-1 m-1">
+                        @foreach ($actual->votaciones as $item)
+                            <livewire:reunion.votacion.pregunta-resultado :pregunta="$item->id"/>
+                        @endforeach
+                    </div>
                 @endif
             </div>
             <div class="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 w-full h-full absolute top-0 left-0 z-0"></div>
