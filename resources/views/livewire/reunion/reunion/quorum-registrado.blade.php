@@ -11,5 +11,16 @@
             <dt class="mb-2 text-3xl font-extrabold">{{$coeficiente}} %</dt>
             <dd class="text-gray-500 dark:text-gray-400">Suma de coeficientes</dd>
         </div>
+        @if ($unidmora>0)
+            <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl font-extrabold">{{$unidmora}}</dt>
+                <dd class="text-gray-500 dark:text-gray-400">Unidades Registradas - mora</dd>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+                <dt class="mb-2 text-3xl font-extrabold">{{$coemora}} %</dt>
+                <dd class="text-gray-500 dark:text-gray-400">Suma de coeficientes - mora</dd>
+            </div>
+        @endif
+
     </dl>
 </div>

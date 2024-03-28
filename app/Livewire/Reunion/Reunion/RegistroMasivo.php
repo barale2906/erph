@@ -68,6 +68,8 @@ class RegistroMasivo extends Component
 
         $this->dispatch('porcentuando');
         $this->dispatch('contando');
+        $this->dispatch('morando');
+        $this->dispatch('moranpor');
 
         $this->cancel();
     }
