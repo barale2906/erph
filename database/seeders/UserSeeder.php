@@ -38,9 +38,9 @@ class UserSeeder extends Seeder
         ])->assignRole('Superusuario');
 
         User::factory()->create([
-            'name' => 'Juan Carlos Martinez',
-            'email' => 'administrador@flamencos2.com',
-            'password'=>bcrypt('administradorflamencos'),
+            'name' => 'Jackson Farfán',
+            'email' => 'administrador@alameda.com',
+            'password'=>bcrypt('administradoralameda'),
             'rol_id'=>4,
             'ph_id'=>1,
         ])->assignRole('Administrador');
