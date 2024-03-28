@@ -13,6 +13,9 @@
             Cargar
         </button>
     </form>
+    <h1 class=" text-center uppercase font-extrabold text-4xl">
+        {{$mora}}
+    </h1>
 
     <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 m-4">

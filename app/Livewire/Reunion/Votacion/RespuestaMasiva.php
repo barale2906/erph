@@ -20,6 +20,7 @@ class RespuestaMasiva extends Component
     public $respuesta;
     public $pregunta;
     public $codigo;
+    public $mora;
 
 
     protected $listeners = ['refresh' => '$refresh'];
@@ -54,25 +55,31 @@ class RespuestaMasiva extends Component
 
         if($quo->count()){
             foreach ($quo as $value) {
+                $this->reset('mora');
 
-                $ya=Resultado::where('codigo', $this->codigo)
-                            ->where('quorum_id', $value->id)
-                            ->where('votacion_id', $this->pregunta->id)
-                            ->first();
-
-                if($ya){
-                    $this->dispatch('alerta', name:'Ya se registro ese código para la pregunta: '.$this->pregunta->pregunta);
+                if($value->unidad->mora){
+                    $this->mora="EN MORA ".$value->name;
                 }else{
 
-                    if($this->codigo!==""){
-                        Resultado::create([
-                            'votacion_id'       =>$this->pregunta->id,
-                            'respuesta_id'      =>$this->respuesta->id,
-                            'unidad_id'         =>$value->unidad_id,
-                            'quorum_id'         =>$value->id,
-                            'coeficiente'       =>$value->coeficiente,
-                            'codigo'            =>$this->codigo
-                        ]);
+                    $ya=Resultado::where('codigo', $this->codigo)
+                    ->where('quorum_id', $value->id)
+                    ->where('votacion_id', $this->pregunta->id)
+                    ->first();
+
+                    if($ya){
+                        $this->dispatch('alerta', name:'Ya se registro ese código para la pregunta: '.$this->pregunta->pregunta);
+                    }else{
+
+                        if($this->codigo!==""){
+                            Resultado::create([
+                                'votacion_id'       =>$this->pregunta->id,
+                                'respuesta_id'      =>$this->respuesta->id,
+                                'unidad_id'         =>$value->unidad_id,
+                                'quorum_id'         =>$value->id,
+                                'coeficiente'       =>$value->coeficiente,
+                                'codigo'            =>$this->codigo
+                            ]);
+                        }
                     }
                 }
             }
