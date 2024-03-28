@@ -47,11 +47,12 @@ class UnidadSeeder extends Seeder
                             'name'          =>$name,
                             'coeficiente'   =>$data[2],
                             'unidad_id'     =>$dep,
-                            'mora'          =>$mora
+                            'mora'          =>$mora,
+                            'responsable'   =>$data[6],
                         ]);
 
                     }catch(Exception $exception){
-                        Log::info('Line: ' . $row . ' alameda with error: ' . $exception->getMessage().' prop: '.intval($data[0]));
+                        Log::info('Line: ' . $row . ' alameda with error: ' . $exception->getMessage());
                     }
                 }
         }

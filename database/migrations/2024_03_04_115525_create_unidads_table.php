@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('propiedad_id')->references('id')->on('propiedads');
 
             $table->string('name')->comment('Identificación de la torre, apto, interior etc');
+            $table->string('responsable')->nullable()->comment('Persona a cargo de la unidad');
             $table->double('coeficiente')->nullable()->comment('Coeficiente dentro de la copropiedad');
             $table->integer('unidad_id')->nullable()->comment('id de la unidad a la cual pertenece');
             $table->boolean('mora')->default(false)->comment('false al día, true en mora');
