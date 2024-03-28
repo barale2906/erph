@@ -67,19 +67,13 @@
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
                                     <div class="inline-flex rounded-md shadow-sm" role="group">
-                                        <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-blue-100 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                            <a href="" wire:click.prevent="show({{$it->id}},{{0}})" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                                <i class="fa-solid fa-door-open"></i>
-                                            </a>
+                                        <button type="button" wire:click.prevent="show({{$it->id}},{{0}})" class="inline-flex items-center p-2 text-sm font-medium text-blue-600 bg-blue-100 border border-blue-200 rounded-s-lg hover:bg-blue-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-blue-700 dark:border-blue-600 dark:text-white dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-500 dark:focus:text-white hover:underline">
+                                            <i class="fa-solid fa-door-open"></i>
                                         </button>
 
                                         @if ($actual->status===0)
-                                            <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-red-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-red-500 dark:focus:text-white">
-
-                                                <a href="" wire:click.prevent="show({{$it->id}},{{4}})" class="inline-flex items-center font-medium text-red-600 dark:text-red-500 hover:underline">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </a>
-
+                                            <button type="button" wire:click.prevent="show({{$it->id}},{{4}})" class="inline-flex items-center p-2 text-sm font-medium text-red-600 bg-red-100 border-t border-b border-red-200 hover:bg-red-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-white dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-500 dark:focus:text-white hover:underline">
+                                                <i class="fa-solid fa-xmark"></i>
                                             </button>
                                         @endif
 
@@ -87,29 +81,19 @@
                                         @if ($actual->status===1)
                                             @switch($it->status)
                                                 @case(1)
-                                                    <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-green-500 dark:focus:text-white">
+                                                    <button type="button" wire:click.prevent="show({{$it->id}},{{2}})" class="inline-flex items-center p-2 text-sm font-medium text-green-600 bg-green-100 border-t border-b border-green-200 hover:bg-green-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-700 dark:border-green-600 dark:text-white dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-500 dark:focus:text-white hover:underline">
 
-                                                            <a href="" wire:click.prevent="show({{$it->id}},{{2}})" class="inline-flex items-center font-medium text-green-600 dark:text-green-500 hover:underline">
-                                                                <i class="fa-solid fa-jet-fighter-up"></i>
-                                                            </a>
+                                                        <i class="fa-solid fa-jet-fighter-up"></i>
 
                                                     </button>
 
-                                                    <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-red-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-red-500 dark:focus:text-white">
-
-                                                        <a href="" wire:click.prevent="show({{$it->id}},{{4}})" class="inline-flex items-center font-medium text-red-600 dark:text-red-500 hover:underline">
-                                                            <i class="fa-solid fa-xmark"></i>
-                                                        </a>
-
+                                                    <button type="button" wire:click.prevent="show({{$it->id}},{{4}})" class="inline-flex items-center p-2 text-sm font-medium text-red-600 bg-red-100 border-t border-b border-red-200 hover:bg-red-100 hover:text-red-700 focus:z-10 focus:ring-2 focus:ring-red-700 focus:text-red-700 dark:bg-red-700 dark:border-red-600 dark:text-white dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-500 dark:focus:text-white hover:underline">
+                                                        <i class="fa-solid fa-xmark"></i>
                                                     </button>
                                                     @break
                                                 @case(2)
-                                                    <button type="button" class="inline-flex items-center p-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-green-500 dark:focus:text-white">
-
-                                                            <a href="" wire:click.prevent="show({{$it->id}},{{3}})" class="inline-flex items-center font-medium text-green-600 dark:text-green-500 hover:underline">
-                                                                <i class="fa-solid fa-folder-closed"></i>
-                                                            </a>
-
+                                                    <button type="button" wire:click.prevent="show({{$it->id}},{{3}})" class="inline-flex items-center p-2 text-sm font-medium text-green-600 bg-green-100 border-t border-b border-green-200 hover:bg-green-100 hover:text-green-700 focus:z-10 focus:ring-2 focus:ring-green-700 focus:text-green-700 dark:bg-green-700 dark:border-green-600 dark:text-white dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-500 dark:focus:text-white hover:underline">
+                                                        <i class="fa-solid fa-folder-closed"></i>
                                                     </button>
                                                     @break
 
