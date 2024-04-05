@@ -59,9 +59,15 @@
                                         <img class="rounded-s" src={{$item['ruta']}} alt="" />
                                     </a>
                                     <div class="p-1">
-                                        <p class="capitalize text-sm">
-                                            {{$texto}} - {{$item['nombre']}}
-                                        </p>
+                                        @if ($i===intval($veces))
+                                            <p class="capitalize text-sm">
+                                                {{$texto}} - {{$item['nombre']}} - REF
+                                            </p>
+                                        @else
+                                            <p class="capitalize text-sm">
+                                                {{$texto}} - {{$item['nombre']}}
+                                            </p>
+                                        @endif
                                     </div>
                                 </th>
                             @endfor
