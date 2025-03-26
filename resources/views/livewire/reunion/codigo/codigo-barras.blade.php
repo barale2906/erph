@@ -61,7 +61,7 @@
                                     <div class="p-1">
                                         @if ($i===intval($veces))
                                             <p class="capitalize text-sm">
-                                                {{$texto}} - {{$item['nombre']}} - REF
+                                                {{$texto}} - {{$item['nombre']}} - REF1
                                             </p>
                                         @else
                                             <p class="capitalize text-sm">
