@@ -54,24 +54,23 @@
                     @foreach ($codigos as $item)
                         <tr class="bg-white border dark:bg-gray-800 dark:border-gray-700">
                             @for ($i = 1; $i <= $veces; $i++)
-                                <th scope="row" class="font-medium p-2 text-gray-900 dark:text-white">
-                                    <a href="#">
-                                        <img class="rounded-s" src={{$item['ruta']}} alt="" />
-                                    </a>
+                                <th scope="row" class="border border-gray-300 p-4 align-middle font-medium text-gray-900 dark:text-white">
                                     <div class="p-1">
                                         @if ($i===intval($veces))
-                                            <p class="capitalize text-sm">
-                                                {{$texto}} - {{$item['nombre']}} - REF1
+                                            <p class="capitalize text-sm text-left">
+                                                {{$texto}} - {{$item['nombre']}}
                                             </p>
                                         @else
-                                            <p class="capitalize text-sm">
+                                            <p class="capitalize text-sm text-left">
                                                 {{$texto}} - {{$item['nombre']}}
                                             </p>
                                         @endif
                                     </div>
+                                    <a href="#">
+                                        <img class="rounded object-cover" src={{$item['ruta']}} alt="" />
+                                    </a>
                                 </th>
                             @endfor
-
                         </tr>
                     @endforeach
                 </tbody>
