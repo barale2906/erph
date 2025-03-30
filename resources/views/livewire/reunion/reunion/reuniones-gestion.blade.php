@@ -122,8 +122,8 @@
         </section>
 
         @if ($is_registromasivo)
-            {{-- <livewire:reunion.reunion.registro-masivo :reunion="$reunion" /> --}}
-            <livewire:reunion.reunion.registrobarras :reunion="$reunion" />
+            <livewire:reunion.reunion.registro-masivo :reunion="$reunion" />
+            {{-- <livewire:reunion.reunion.registrobarras :reunion="$reunion" /> --}}
         @endif
 
 

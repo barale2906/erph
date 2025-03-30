@@ -8,128 +8,116 @@
             </div>
         </div>
 
-        <div class="overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 m-4">
-                <thead class="text-xs text-gray-700 uppercase ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3" >
-                        </th>
-                        <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('name')">
-                            Nombre
-                            @if ($ordena != 'name')
-                                <i class="fas fa-sort"></i>
-                            @else
-                                @if ($ordenado=='ASC')
-                                    <i class="fas fa-sort-up"></i>
-                                @else
-                                    <i class="fas fa-sort-down"></i>
-                                @endif
-                            @endif
-                        </th>
-                        <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('coeficiente')">
-                            Coeficiente
-                            @if ($ordena != 'coeficiente')
-                                <i class="fas fa-sort"></i>
-                            @else
-                                @if ($ordenado=='ASC')
-                                    <i class="fas fa-sort-up"></i>
-                                @else
-                                    <i class="fas fa-sort-down"></i>
-                                @endif
-                            @endif
-                        </th>
-                        <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('asistio')">
-                            Asistio
-                            @if ($ordena != 'asistio')
-                                <i class="fas fa-sort"></i>
-                            @else
-                                @if ($ordenado=='ASC')
-                                    <i class="fas fa-sort-up"></i>
-                                @else
-                                    <i class="fas fa-sort-down"></i>
-                                @endif
-                            @endif
-                        </th>
-                        <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('codigo')">
-                            Código
-                            @if ($ordena != 'codigo')
-                                <i class="fas fa-sort"></i>
-                            @else
-                                @if ($ordenado=='ASC')
-                                    <i class="fas fa-sort-up"></i>
-                                @else
-                                    <i class="fas fa-sort-down"></i>
-                                @endif
-                            @endif
-                        </th>
-                        <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('observaciones')">
-                            Observaciones
-                            @if ($ordena != 'observaciones')
-                                <i class="fas fa-sort"></i>
-                            @else
-                                @if ($ordenado=='ASC')
-                                    <i class="fas fa-sort-up"></i>
-                                @else
-                                    <i class="fas fa-sort-down"></i>
-                                @endif
-                            @endif
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($unidades as $it)
+        @if ($buscar)
+            <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 m-4">
+                    <thead class="text-xs text-gray-700 uppercase ">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
-                                <div class="inline-flex rounded-md shadow-sm" role="group">
-                                    <button type="button" wire:click.prevent="show({{$it->id}})" class="inline-flex items-center p-2 text-sm font-medium text-blue-600 bg-blue-100 border border-blue-200 rounded-s-lg hover:bg-blue-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-blue-700 dark:border-blue-600 dark:text-white dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                        <i class="fa-solid fa-barcode"></i>
-                                    </button>
-                                </div>
+                            <th scope="col" class="px-6 py-3" >
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 uppercase">
-                                {{$it->name}}
+                            <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('name')">
+                                Nombre
+                                @if ($ordena != 'name')
+                                    <i class="fas fa-sort"></i>
+                                @else
+                                    @if ($ordenado=='ASC')
+                                        <i class="fas fa-sort-up"></i>
+                                    @else
+                                        <i class="fas fa-sort-down"></i>
+                                    @endif
+                                @endif
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
-                                {{$it->coeficiente}}
+                            <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('coeficiente')">
+                                Coeficiente
+                                @if ($ordena != 'coeficiente')
+                                    <i class="fas fa-sort"></i>
+                                @else
+                                    @if ($ordenado=='ASC')
+                                        <i class="fas fa-sort-up"></i>
+                                    @else
+                                        <i class="fas fa-sort-down"></i>
+                                    @endif
+                                @endif
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
-                                @switch($it->asistio)
-                                    @case(0)
-                                        No
-                                        @break
-                                    @case(1)
-                                        Si
-                                        @break
-                                @endswitch
+                            <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('asistio')">
+                                Asistio
+                                @if ($ordena != 'asistio')
+                                    <i class="fas fa-sort"></i>
+                                @else
+                                    @if ($ordenado=='ASC')
+                                        <i class="fas fa-sort-up"></i>
+                                    @else
+                                        <i class="fas fa-sort-down"></i>
+                                    @endif
+                                @endif
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 uppercase">
-                                {{$it->codigo}}
+                            <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('codigo')">
+                                Código
+                                @if ($ordena != 'codigo')
+                                    <i class="fas fa-sort"></i>
+                                @else
+                                    @if ($ordenado=='ASC')
+                                        <i class="fas fa-sort-up"></i>
+                                    @else
+                                        <i class="fas fa-sort-down"></i>
+                                    @endif
+                                @endif
                             </th>
-                            <th scope="col" class="px-6 py-3 text-justify font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
-                                {{$it->observaciones}}
+                            <th scope="col" class="px-6 py-3" style="cursor: pointer;" wire:click="organizar('observaciones')">
+                                Observaciones
+                                @if ($ordena != 'observaciones')
+                                    <i class="fas fa-sort"></i>
+                                @else
+                                    @if ($ordenado=='ASC')
+                                        <i class="fas fa-sort-up"></i>
+                                    @else
+                                        <i class="fas fa-sort-down"></i>
+                                    @endif
+                                @endif
                             </th>
                         </tr>
-                    @endforeach
+                    </thead>
+                    <tbody>
+                        @foreach ($unidades as $it)
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
+                                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                                        <button type="button" wire:click.prevent="show({{$it->id}})" class="inline-flex items-center p-2 text-sm font-medium text-blue-600 bg-blue-100 border border-blue-200 rounded-s-lg hover:bg-blue-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-blue-700 dark:border-blue-600 dark:text-white dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                            <i class="fa-solid fa-barcode"></i>
+                                        </button>
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 uppercase">
+                                    {{$it->name}}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
+                                    {{$it->coeficiente}}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
+                                    @switch($it->asistio)
+                                        @case(0)
+                                            No
+                                            @break
+                                        @case(1)
+                                            Si
+                                            @break
+                                    @endswitch
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 uppercase">
+                                    {{$it->codigo}}
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-justify font-extrabold bg-gray-50 dark:bg-gray-700 dark:text-gray-400 capitalize">
+                                    {{$it->observaciones}}
+                                </th>
+                            </tr>
+                        @endforeach
 
-                </tbody>
-            </table>
-            <div class="mt-2 p-1 w-auto rounded-lg grid grid-cols-2 gap-4 bg-blue-100">
-                <div>
-                    <label class="relative inline-flex items-center mb-4 cursor-pointer">
-                        <span class="ml-3 mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Registros:</span>
-                        <select wire:click="paginas($event.target.value)" id="countries" class="w-20 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value=15>15</option>
-                            <option value=20>20</option>
-                            <option value=50>50</option>
-                            <option value=100>100</option>
-                        </select>
-                    </label>
-                </div>
-                <div>
-                    {{ $unidades->links() }}
-                </div>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        @endif
+
+
     @endif
 
     @if ($is_barcode)
@@ -153,5 +141,12 @@
 
     @endif
 
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('focusInput', () => {
+                document.getElementById('codigo').focus();
+            });
+        });
+    </script>
 
 </div>

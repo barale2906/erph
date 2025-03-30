@@ -125,7 +125,7 @@ class ReunionesGestion extends Component
         'hora'      => 'required',
         'lugar'     => 'required',
         'tip'       => 'required',
-        'barcode'   => 'required'
+        //'barcode'   => 'required'
     ];
 
 
@@ -139,7 +139,7 @@ class ReunionesGestion extends Component
                         'hora',
                         'lugar',
                         'tip',
-                        'barcode'
+                        //'barcode'
                     );
 
     }
@@ -170,7 +170,7 @@ class ReunionesGestion extends Component
                     'name'          =>$value->name,
                     'unidad_id'     =>$value->id,
                     'coeficiente'   =>$value->coeficiente,
-                    'codigo'        =>$this->barcode,
+                    //'codigo'        =>$this->barcode,
                     'observaciones' =>now().Auth::user()->name." creo la convocatoria",
                 ]);
 

@@ -79,7 +79,8 @@ class RegistroMasivo extends Component
             'elegido',
             'codigo',
             'is_barcode',
-            'is_contenido'
+            'is_contenido',
+            'buscar'
         );
     }
 
