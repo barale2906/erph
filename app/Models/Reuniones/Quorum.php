@@ -54,7 +54,8 @@ class Quorum extends Model
     //Buscar
     public function scopeBuscar($query, $item){
         $query->when($item ?? null, function($query, $item){
-                    $query->where('name', 'like', "%".$item."%");
+                    $query->where('name', 'like', $item."%");
+                    //$query->where('name', 'like', "%".$item."%");
                 });
 
     }
