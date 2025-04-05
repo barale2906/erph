@@ -17,7 +17,7 @@ class UnidadSeeder extends Seeder
     {
         $row = 1;
 
-        if(($handle = fopen(public_path() . '/csv/flamencos.csv', 'r')) !== false) {
+        if(($handle = fopen(public_path() . '/csv/alameda.csv', 'r')) !== false) {
 
                 while(($data = fgetcsv($handle, 26000, ';')) !== false) {
 
@@ -42,6 +42,7 @@ class UnidadSeeder extends Seeder
                         }
 
 
+                        Log::info('Line: ' . $row . ' con: '.intval($data[0]).' name: '.$name.' coef: '.$data[2].' unida: '.$dep.' responsable: '.$data[6]);
                         Unidad::create([
                             'propiedad_id'  =>intval($data[0]),
                             'name'          =>$name,
@@ -52,7 +53,9 @@ class UnidadSeeder extends Seeder
                         ]);
 
                     }catch(Exception $exception){
-                        Log::info('Line: ' . $row . ' flamencos with error: ' . $exception->getMessage());
+
+                        Log::info('Line: ' . $row . ' con: '.intval($data[0]).' name: '.$name.' coef: '.$data[2].' unida: '.$dep.' responsable: '.$data[6]);
+                        Log::info('Line: ' . $row . ' alameda with error: ' . $exception->getMessage());
                     }
                 }
         }

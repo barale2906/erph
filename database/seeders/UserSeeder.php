@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        /* User::factory()->create([
+        User::factory()->create([
             'name' => 'Ing Alexander Barajas V',
             'email' => 'alexanderbarajas@gmail.com',
             'password'=>bcrypt('79844910'),
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('1030535862'),
             'rol_id'=>1,
             'ph_id'=>1,
-        ])->assignRole('Superusuario'); */
+        ])->assignRole('Superusuario');
 
         User::factory()->create([
             'name' => 'Jackson Farfán',
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Sofia Castiblanco',
-            'email' => 'es.castiblanco@uniandes.edu.co',
+            'email' => 'es.castiblanco@gislasas.com',
             'password'=>bcrypt('1000603484'),
             'rol_id'=>4,
             'ph_id'=>1,
